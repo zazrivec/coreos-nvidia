@@ -4,10 +4,9 @@ services:
 sudo: required
 
 env:
-  - COREOS_RELEASE_CHANNEL=stable
-  - COREOS_RELEASE_CHANNEL=beta
-  - COREOS_RELEASE_CHANNEL=alpha
-
+  - COREOS_RELEASE_CHANNEL=stable OS_VERSION=1235.9.0
+  - COREOS_RELEASE_CHANNEL=stable OS_VERSION=current
+  
 before_install:
   - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
   - sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
