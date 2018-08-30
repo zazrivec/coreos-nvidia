@@ -4,7 +4,7 @@ COREOS_RELEASES_URL := https://coreos.com/releases/releases-$(COREOS_RELEASE_CHA
 
 # Linux Container version, if empty the last available version for the given
 # release channel will be use making a request to the release feed.
-COREOS_VERSION ?=
+COREOS_VERSION ?= 1235.9.0
 ifneq ($(origin COREOS_VERSION), undefined)
 	COREOS_VERSION = $(shell \
 		curl -s ${COREOS_RELEASES_URL} | \
