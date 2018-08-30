@@ -1,5 +1,5 @@
 
-# Container Linux (aka CoreOS) NVIDIA Driver [![Build Status](https://travis-ci.org/src-d/coreos-nvidia.svg?branch=master)](https://travis-ci.org/src-d/coreos-nvidia)
+# Container Linux (aka CoreOS) NVIDIA Driver [![Build Status](https://travis-ci.org/zazrivec/coreos-nvidia.svg?branch=master)](https://travis-ci.org/zazrivec/coreos-nvidia)
 
 Yet another NVIDIA driver container for Container Linux (aka CoreOS).
 
@@ -24,14 +24,14 @@ Executing the `srcd/coreos-nvidia` for your CoreOS version the nvidia modules ar
 
 ```sh
 source /etc/os-release
-docker run --rm --privileged --volume /:/rootfs/ srcd/coreos-nvidia:${VERSION}
+docker run --rm --privileged --volume /:/rootfs/ zazrivec/coreos-nvidia:${VERSION}
 ```
 
 You can test the execution running the next command:
 
 ```sh
 docker run --rm $(for d in /dev/nvidia*; do echo -n "--device $d "; done) \
-    srcd/coreos-nvidia:${VERSION} nvidia-smi -L
+    zazrivec/coreos-nvidia:${VERSION} nvidia-smi -L
 
 // Outputs:
 // GPU 0: Tesla K80 (UUID: GPU-d57ec7e8-ab97-8612-54ac-9d53a183f818)
@@ -56,8 +56,8 @@ Requires=docker.service
 TimeoutStartSec=20m
 EnvironmentFile=/etc/os-release
 ExecStartPre=-/usr/bin/docker rm nvidia-driver
-ExecStartPre=/usr/bin/docker run --rm --privileged --volume /:/rootfs/ srcd/coreos-nvidia:${VERSION}
-ExecStart=/usr/bin/docker run --rm --name nvidia-driver srcd/coreos-nvidia:${VERSION} sleep infinity
+ExecStartPre=/usr/bin/docker run --rm --privileged --volume /:/rootfs/ zazrivec/coreos-nvidia:${VERSION}
+ExecStart=/usr/bin/docker run --rm --name nvidia-driver zazrivec/coreos-nvidia:${VERSION} sleep infinity
 ExecStop=/usr/bin/docker stop nvidia-driver
 ExecStop=-/sbin/rmmod nvidia_uvm nvidia
 
@@ -89,7 +89,7 @@ And the `nvidia-driver` container running:
 docker ps | grep -i nvidia-driver
 ```
 ```
-8cea48f9d556   srcd/coreos-nvidia:1465.7.0   "sleep infinity"   11 hours ago   nvidia-driver
+8cea48f9d556   zazrivec/coreos-nvidia:1465.7.0   "sleep infinity"   11 hours ago   nvidia-driver
 ```
 
 ## Usage
@@ -124,7 +124,8 @@ docker run --rm -it \
 
 Eventually an image for all the Container Linux version for all the release channels should be available, to ensure this, a Travis cron is executed everyday that checks if a new Container Linux versions exists, if exists a new image will be created.
 
-The list of images is available at: [https://hub.docker.com/r/srcd/coreos-nvidia/tags/](https://hub.docker.com/r/srcd/coreos-nvidia/tags/).
+The list of images is available at: [https://hub.docker.com/r/
+/coreos-nvidia/tags/](https://hub.docker.com/r/zazrivec/coreos-nvidia/tags/).
 
 ### What I can do if I can't find an image for my version?
 
