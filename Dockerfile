@@ -17,6 +17,9 @@ ENV KERNEL_PATH /usr/src/kernels/linux
 ENV KERNEL_REPOSITORY https://github.com/coreos/linux.git
 ENV COREOS_RELEASE_URL https://${COREOS_RELEASE_CHANNEL}.release.core-os.net/amd64-usr/${COREOS_VERSION}
 
+ENV KCPPFLAGS -fno-pie -Wno-pointer-sign -fno-stack-protector -mfentry
+ENV CPPFLAGS -fno-pie -Wno-pointer-sign -fno-stack-protector -mfentry
+
 RUN git clone ${KERNEL_REPOSITORY} \
         --single-branch \
         --depth 1 \
@@ -37,9 +40,6 @@ ENV NVIDIA_DRIVER_URL http://us.download.nvidia.com/XFree86/Linux-x86_64/${NVIDI
 
 ENV NVIDIA_PATH /opt/nvidia
 ENV NVIDIA_BUILD_PATH /opt/nvidia/build
-
-ENV KCPPFLAGS -fno-pie -Wno-pointer-sign -fno-stack-protector -mfentry
-ENV CPPFLAGS -fno-pie -Wno-pointer-sign -fno-stack-protector -mfentry
 
 # NVIDIA driver
 WORKDIR ${NVIDIA_PATH}/download
