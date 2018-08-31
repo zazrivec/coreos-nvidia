@@ -14,13 +14,13 @@ ARG KERNEL_VERSION
 ARG KERNEL_TAG
 
 ENV KERNEL_PATH /usr/src/kernels/linux
-ENV KERNEL_REPOSITORY git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git
+ENV KERNEL_REPOSITORY git@github.com:coreos/linux.git
 ENV COREOS_RELEASE_URL https://${COREOS_RELEASE_CHANNEL}.release.core-os.net/amd64-usr/${COREOS_VERSION}
 
 RUN git clone ${KERNEL_REPOSITORY} \
         --single-branch \
         --depth 1 \
-        --branch v${KERNEL_TAG} \
+        --branch v${KERNEL_TAG}-coreos \
         ${KERNEL_PATH}
 
 WORKDIR ${KERNEL_PATH}
