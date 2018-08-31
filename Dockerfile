@@ -38,8 +38,8 @@ ENV NVIDIA_DRIVER_URL http://us.download.nvidia.com/XFree86/Linux-x86_64/${NVIDI
 ENV NVIDIA_PATH /opt/nvidia
 ENV NVIDIA_BUILD_PATH /opt/nvidia/build
 
-ENV KCPPFLAGS -fno-pie
-ENV CPPFLAGS -fno-pie
+ENV KCPPFLAGS -fno-pie -Wno-pointer-sign -fno-stack-protector -mfentry
+ENV CPPFLAGS -fno-pie -Wno-pointer-sign -fno-stack-protector -mfentry
 
 # NVIDIA driver
 WORKDIR ${NVIDIA_PATH}/download
