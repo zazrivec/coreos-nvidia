@@ -25,7 +25,7 @@ RUN git clone ${KERNEL_REPOSITORY} \
 
 WORKDIR ${KERNEL_PATH}
 
-RUN git checkout -b v${KERNEL_TAG}-coreos && rm -rf .git
+RUN rm -rf .git
 RUN curl ${COREOS_RELEASE_URL}/coreos_developer_container.bin.bz2 | \
         bzip2 -d > /tmp/coreos_developer_container.bin
 RUN 7z e /tmp/coreos_developer_container.bin "usr/lib64/modules/*-coreos*/build/.config"
