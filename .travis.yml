@@ -4,14 +4,17 @@ services:
 sudo: required
 
 env:
-  - COREOS_RELEASE_CHANNEL=stable COREOS_VERSION=1235.9.0
-  - COREOS_RELEASE_CHANNEL=stable
+  - COREOS_RELEASE_CHANNEL=stable OS_VERSION=1235.9.0
+  - COREOS_RELEASE_CHANNEL=stable OS_VERSION=current
   
 before_install:
   - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
   - sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
   - sudo apt-get update
   - sudo apt-get -y install docker-ce
+  - curl https://${COREOS_RELEASE_CHANNEL}.release.core-os.net/amd64-usr/${OS_VERSION}/version.txt -o version.txt
+  - cat version.txt
+  - export $(cat version.txt | xargs)  
   - make pull
 
 
