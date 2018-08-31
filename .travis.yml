@@ -4,8 +4,8 @@ services:
 sudo: required
 
 env:
-  - COREOS_RELEASE_CHANNEL=stable OS_VERSION=1235.9.0
-  - COREOS_RELEASE_CHANNEL=stable OS_VERSION=current
+  - COREOS_RELEASE_CHANNEL=stable OS_VERSION=1235.9.0 NVIDIA_MATURIRY=long-lived-branch-release
+  - COREOS_RELEASE_CHANNEL=stable OS_VERSION=current NVIDIA_MATURIRY=official
   
 before_install:
   - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
