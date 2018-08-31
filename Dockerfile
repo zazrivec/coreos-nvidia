@@ -14,7 +14,7 @@ ARG KERNEL_VERSION
 ARG KERNEL_TAG
 
 ENV KERNEL_PATH /usr/src/kernels/linux
-ENV KERNEL_REPOSITORY git@github.com:coreos/linux.git
+ENV KERNEL_REPOSITORY https://github.com/coreos/linux.git
 ENV COREOS_RELEASE_URL https://${COREOS_RELEASE_CHANNEL}.release.core-os.net/amd64-usr/${COREOS_VERSION}
 
 RUN git clone ${KERNEL_REPOSITORY} \
